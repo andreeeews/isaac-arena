@@ -7,7 +7,8 @@ class Game {
         this.fps = 60
 
         this.background = new Background(this.ctx);
-        this.isaac = new Isaac(this.ctx, 0, 0)
+        this.isaac = new Isaac(this.ctx, 400-20, 300-40)
+        // -20 es el el resultado del ancho del persona-el ancho del escenario, los mismo para 40.
         
         //this.audio
 
