@@ -1,13 +1,13 @@
 class Enemy {
-    constructor(ctx, x, y) {
+    constructor(ctx) {
         this.ctx = ctx;
-        this.x = x;
-        this.y = y;
+        this.x = 0;
+        this.y = 0;
         this.w = 60;
         this.h = 40;
 
-        this.vx = 0;
-        this.vy = 0;
+        this.vx = 1;
+        this.vy = 1;
 
         this.sprite = new Image();
         this.sprite.src = "/assets/img/flyanim.png"
@@ -15,6 +15,8 @@ class Enemy {
         this.sprite.horizontalFrameIndex = 0;
         this.sprite.verticalFrames = 1;
         this.sprite.verticalFrameIndex = 0;
+
+        
 
         this.sprite.onload = () => {
             this.sprite.isReady = true;
@@ -43,11 +45,17 @@ class Enemy {
         }
     }
 
-    move() {
-        this.speed = 2
-        
-        
-        this.vx = 1
-        this.vy = 1
+    move(isaac) {
+        if (isaac.x > this.x) {
+            this.x += ENEMY_SPEED;
+        } else if (isaac.x < this.x) {
+            this.x -= ENEMY_SPEED
+        } 
+
+        if (isaac.y > this.y) {
+            this.y += ENEMY_SPEED;
+        } else if (isaac.y < this.y) {
+            this.y -= ENEMY_SPEED
+        } 
     }
 }

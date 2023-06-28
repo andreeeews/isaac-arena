@@ -46,16 +46,16 @@ class Isaac {
     onKeyDown(keyCode) {
         switch(keyCode) {
             case KEY_UP:
-                this.vy = -10
+                this.vy = -PLAYER_SPEED
                 break;
             case KEY_DOWN:
-                this.vy = 10
+                this.vy = PLAYER_SPEED
                 break;
             case KEY_RIGHT:
-                this.vx = 10
+                this.vx = PLAYER_SPEED
                 break;
             case KEY_LEFT:
-                this.vx = -10
+                this.vx = -PLAYER_SPEED
                 break;
         }
     }
