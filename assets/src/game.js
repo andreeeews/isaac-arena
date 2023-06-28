@@ -7,9 +7,9 @@ class Game {
         this.fps = 60
 
         this.background = new Background(this.ctx);
-        this.isaac = new Isaac(this.ctx, 400-20, 300-40)
+        this.isaac = new Isaac(this.ctx, 400-20, 300-40);
         // -20 es el el resultado del ancho del persona-el ancho del escenario, los mismo para 40.
-        
+        this.enemy = new Enemy(this.ctx, 0, 0);
         //this.audio
 
         this.tick = 0;
@@ -39,10 +39,12 @@ class Game {
     draw() {
         this.background.draw();
         this.isaac.draw();
+        this.enemy.draw();
     }
 
     move() {
         this.isaac.move();
+        this.enemy.move();
     }
 
     clear() {
