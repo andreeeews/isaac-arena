@@ -3,8 +3,8 @@ class Enemy {
         this.ctx = ctx;
         this.x = 0;
         this.y = 0;
-        this.w = 60;
-        this.h = 40;
+        this.w = 50;
+        this.h = 50;
 
         this.vx = 1;
         this.vy = 1;
@@ -42,7 +42,11 @@ class Enemy {
                 this.w,
                 this.h
             )
+                if (DEBUG) {
+                Utils.drawDebugRect(this.ctx, this.x, this.y, this.w, this.h)
+            }
         }
+    
     }
 
     move(isaac) {

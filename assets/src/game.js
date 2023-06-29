@@ -30,10 +30,15 @@ class Game {
     start() {
         this.drawIntervalId = setInterval(() => {
             this.clear();
-            this.draw();
             this.move();
-
+            this.draw();
+            this.checkCollisions()
         }, 1000 / this.fps);
+    }
+
+    stop() {
+        clearInterval(this.drawIntervalId);
+        this.drawIntervalId = undefined;
     }
 
     draw() {
@@ -50,6 +55,16 @@ class Game {
 
     clear() {
         this.ctx.clearRect(0, 0, this.canvas.clientWidth, this.canvas.height)
+    }
+
+    checkCollisions() {
+        if (this.isaac.collideWith(this.enemy)) {
+            this.gameOver();
+        }
+    }
+
+    gameOver() {
+        this.stop();
     }
 
 

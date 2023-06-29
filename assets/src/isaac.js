@@ -3,8 +3,8 @@ class Isaac {
         this.ctx = ctx;
         this.x = x;
         this.y = y;
-        this.w = 40;
-        this.h = 70;
+        this.w = 30*2;
+        this.h = 30*2;
 
         this.vx = 0;
         this.vy = 0;
@@ -40,6 +40,9 @@ class Isaac {
                 this.w,
                 this.h,
             )
+            if (DEBUG) {
+                Utils.drawDebugRect(this.ctx, this.x, this.y, this.w, this.h)
+            }
         }
     }
 
@@ -80,5 +83,14 @@ class Isaac {
     move() {
         this.x += this.vx;
         this.y += this.vy;
+    }
+
+    collideWith(element) {
+        return (
+            this.x + this.w > element.x &&
+            this.x < element.x + element.w &&
+            this.y + this.h > element.y &&
+            this.y < element.y + element.h
+        )
     }
 }

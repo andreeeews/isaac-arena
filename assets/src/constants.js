@@ -10,3 +10,5 @@ FIRE_RIGHT = 39;
 
 PLAYER_SPEED = 8;
 ENEMY_SPEED = 1.5;
+
+DEBUG = true;
