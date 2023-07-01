@@ -11,6 +11,8 @@ class Isaac {
 
         this.weapon = new Weapon(this.ctx, this.x + this.w, this.y + this.h / 2);
 
+        this.shooting = null
+
         this.sprite = new Image();
         this.sprite.src = "/assets/img/isaac-sprite.png"
         this.sprite.horizontalFrames = 1
@@ -65,32 +67,36 @@ class Isaac {
                 this.vx = -PLAYER_SPEED
                 break;
             case FIRE_RIGHT:
-                this.weapon.shoot('right');
+                this.shooting  = 'right'
                 break;
             case FIRE_LEFT:
-                this.weapon.shoot('left');
+                this.shooting  = 'left';
                 break;
             case FIRE_UP:
-                this.weapon.shoot('up');
+                this.shooting  = 'up';
                 break;
             case FIRE_DOWN:
-                this.weapon.shoot('down');
+                this.shooting  = 'down';
                 break;
         }
     }
 
     onKeyUp(keyCode) {
         switch(keyCode) {
+            case FIRE_RIGHT:
+            case FIRE_LEFT:
+            case FIRE_UP:
+            case FIRE_DOWN:
+                this.shooting = null;
+                break;
             case KEY_UP:
                 this.vy = 0
                 break;
             case KEY_DOWN:
                 this.vy = 0
                 break;
-            case KEY_RIGHT:
-                this.vx = 0
-                break;
             case KEY_LEFT:
+            case KEY_RIGHT:
                 this.vx = 0
                 break;
         }
@@ -111,6 +117,10 @@ class Isaac {
         } else if (this.y + this.h > this.ctx.canvas.height) {
             this.y = this.ctx.canvas.height - this.h;
         };
+
+        if (this.shooting) {
+            this.weapon.shoot(this.shooting)
+        }
 
         this.weapon.x = this.x + this.w / 2;
         this.weapon.y = this.y + this.h / 2;

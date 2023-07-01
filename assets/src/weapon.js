@@ -5,7 +5,7 @@ class Weapon {
         this.y = y;
 
         this.bullets = [];
-        console.log(this.bullets)
+        
     }
 
     shoot(direction) {
@@ -17,6 +17,9 @@ class Weapon {
         this.bullets.forEach((bullet) => {
             bullet.draw();
         })
+        
+        this.bullets = this.bullets.filter((b) => !b.shouldRemove)
+        console.log(this.bullets)
     };
 
     move() {

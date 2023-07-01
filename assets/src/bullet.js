@@ -10,6 +10,7 @@ class Bullet {
         this.r = 3;
 
         this.direction = direction;
+        this.shouldRemove = false
     }
 
     draw() {
@@ -37,7 +38,20 @@ class Bullet {
               this.x -= this.vx;
               break;
           }
+
+        if (this.x < 0 || this.y < 0 || this.x > this.ctx.canvas.width || this.y > this.ctx.canvas.height) { 
+            this.shouldRemove = true
         }
+    };
+
+    collideWith(enemy) {
+        return (
+            this.x < enemy.x + enemy.w &&
+            this.x + this.r > enemy.x &&
+            this.y < enemy.y + enemy.h &&
+            this.y + this.r > enemy.y
+        );
+    }
         
         
         
