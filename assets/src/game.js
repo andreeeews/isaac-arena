@@ -44,8 +44,7 @@ class Game {
 
     addEnemy() {
         this.tick++;
-    
-        // we add new enemy every 100 times we draw!
+
         if (this.tick > 100 && this.enemies.length < 3) {
           this.tick = 0;
           this.enemies.push(new Enemy(this.ctx));
@@ -79,19 +78,19 @@ class Game {
             this.gameOver();
           }
         })
+
+        player.weapon.bullets.forEach((bullet) => {
+            this.enemies.forEach(enemy => {
+                bullet.collideWith(enemy)
+            })
+        })
+
+        this.enemies = this.enemies.filter((enemy) => !enemy.isKilled);
+
+        
     }
 
     gameOver() {
         this.stop();
     }
-
-
-
-
-
-
-
-
-
-
 }

@@ -10,7 +10,8 @@ class Bullet {
         this.r = 3;
 
         this.direction = direction;
-        this.shouldRemove = false
+        this.shouldRemove = false;
+        this.isKilled = false;
     }
 
     draw() {
@@ -45,12 +46,16 @@ class Bullet {
     };
 
     collideWith(enemy) {
-        return (
+        if (
             this.x < enemy.x + enemy.w &&
             this.x + this.r > enemy.x &&
             this.y < enemy.y + enemy.h &&
             this.y + this.r > enemy.y
-        );
+        ) {
+            this.isKilled = true;
+            enemy.isKilled = true;
+            this.shouldRemove = true;
+        }
     }
         
         
