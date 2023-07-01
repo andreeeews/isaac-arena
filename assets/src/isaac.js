@@ -65,8 +65,16 @@ class Isaac {
                 this.vx = -PLAYER_SPEED
                 break;
             case FIRE_RIGHT:
-                this.weapon.shoot();
-                console.log("disparo")
+                this.weapon.shoot('right');
+                break;
+            case FIRE_LEFT:
+                this.weapon.shoot('left');
+                break;
+            case FIRE_UP:
+                this.weapon.shoot('up');
+                break;
+            case FIRE_DOWN:
+                this.weapon.shoot('down');
                 break;
         }
     }
@@ -104,7 +112,7 @@ class Isaac {
             this.y = this.ctx.canvas.height - this.h;
         };
 
-        this.weapon.x = this.x + this.w;
+        this.weapon.x = this.x + this.w / 2;
         this.weapon.y = this.y + this.h / 2;
 
         this.weapon.move();

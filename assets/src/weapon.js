@@ -8,8 +8,8 @@ class Weapon {
         console.log(this.bullets)
     }
 
-    shoot() {
-        const newBullet = new Bullet(this.ctx, this.x, this.y);
+    shoot(direction) {
+        const newBullet = new Bullet(this.ctx, this.x, this.y, direction);
         this.bullets.push(newBullet);
     }
 

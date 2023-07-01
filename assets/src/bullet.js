@@ -1,5 +1,5 @@
 class Bullet {
-    constructor(ctx, x, y) {
+    constructor(ctx, x, y, direction) {
         this.ctx = ctx;
         this.x = x;
         this.y = y;
@@ -8,6 +8,8 @@ class Bullet {
         this.ax = 0.02
         this.ay = 0.02
         this.r = 3;
+
+        this.direction = direction;
     }
 
     draw() {
@@ -19,7 +21,26 @@ class Bullet {
 
     move() {
         this.vx += this.ax;
-        this.x += this.vx;
-        //this.y += this.vy;
+        this.vy += this.ay;
+
+        switch (this.direction) {
+            case 'up':
+              this.y -= this.vy;
+              break;
+            case 'down':
+              this.y += this.vy;
+              break;
+            case 'right':
+              this.x += this.vx;
+              break;
+            case 'left':
+              this.x -= this.vx;
+              break;
+          }
+        }
+        
+        
+        
+        
+        
     }
-}
