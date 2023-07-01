@@ -9,6 +9,8 @@ class Isaac {
         this.vx = 0;
         this.vy = 0;
 
+        this.weapon = new Weapon(this.ctx, this.x + this.w, this.y + this.h / 2);
+
         this.sprite = new Image();
         this.sprite.src = "/assets/img/isaac-sprite.png"
         this.sprite.horizontalFrames = 1
@@ -44,6 +46,8 @@ class Isaac {
                 Utils.drawDebugRect(this.ctx, this.x, this.y, this.w, this.h)
             }
         }
+
+        this.weapon.draw();
     }
 
     onKeyDown(keyCode) {
@@ -59,6 +63,10 @@ class Isaac {
                 break;
             case KEY_LEFT:
                 this.vx = -PLAYER_SPEED
+                break;
+            case FIRE_RIGHT:
+                this.weapon.shoot();
+                console.log("disparo")
                 break;
         }
     }
@@ -83,6 +91,23 @@ class Isaac {
     move() {
         this.x += this.vx;
         this.y += this.vy;
+
+        if (this.x < 0) {
+            this.x = 0;
+        } else if (this.x + this.w > this.ctx.canvas.width) {
+            this.x = this.ctx.canvas.width - this.w
+        };
+
+        if (this.y < 0) {
+            this.y = 0;
+        } else if (this.y + this.h > this.ctx.canvas.height) {
+            this.y = this.ctx.canvas.height - this.h;
+        };
+
+        this.weapon.x = this.x + this.w;
+        this.weapon.y = this.y + this.h / 2;
+
+        this.weapon.move();
     }
 
     collideWith(element) {
