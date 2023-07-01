@@ -12,6 +12,7 @@ class Game {
         this.enemies = [];
         //this.audio
         this.tick = 0;
+        this.score = 0;
     }
 
     onKeyEvent(event) {
@@ -54,6 +55,7 @@ class Game {
         this.background.draw();
         this.isaac.draw();
         this.enemies.forEach((e) => e.draw());
+        document.getElementById('score').innerHTML = this.score.toString();
     }
 
     move() {

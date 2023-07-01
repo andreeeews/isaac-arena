@@ -55,6 +55,7 @@ class Bullet {
             this.isKilled = true;
             enemy.isKilled = true;
             this.shouldRemove = true;
+            game.score += 1;
         }
     }
         

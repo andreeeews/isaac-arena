@@ -25,7 +25,7 @@ class Weapon {
         })
         
         this.bullets = this.bullets.filter((b) => !b.shouldRemove)
-        console.log(this.bullets)
+        //console.log(this.bullets)
     };
 
     move() {
