@@ -16,6 +16,8 @@ class Enemy {
         this.sprite.verticalFrames = 1;
         this.sprite.verticalFrameIndex = 0;
 
+        this.isKilled = false;
+
         
 
         this.sprite.onload = () => {
@@ -62,4 +64,9 @@ class Enemy {
             this.y -= ENEMY_SPEED
         } 
     }
+
+    killed() {
+        this.isKilled = !this.isKilled;
+    }
+
 }

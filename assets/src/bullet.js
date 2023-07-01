@@ -52,10 +52,8 @@ class Bullet {
             this.y < enemy.y + enemy.h &&
             this.y + this.r > enemy.y
         ) {
-            this.isKilled = true;
-            enemy.isKilled = true;
+            enemy.killed();
             this.shouldRemove = true;
-            game.score += 1;
         }
     }
         

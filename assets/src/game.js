@@ -33,6 +33,7 @@ class Game {
             this.move();
             this.draw();
             this.checkCollisions();
+            this.clearEnemy();
             this.addEnemy();
         }, 1000 / this.fps);
     }
@@ -74,7 +75,7 @@ class Game {
         this.enemies.forEach((e) => {
           const colx = player.x + player.w >= e.x && player.x < e.x + e.w;
           const coly = player.y + player.h >= e.y && player.y < e.y + e.h;
-    
+          
           if (colx && coly) {
             this.gameOver();
           }
@@ -86,9 +87,16 @@ class Game {
             })
         })
 
-        this.enemies = this.enemies.filter((enemy) => !enemy.isKilled);
-
         
+    }
+
+    clearEnemy() {
+      this.enemies = this.enemies.filter(enemy => {
+        if (enemy.isKilled) {
+          this.score += 1;
+        }
+        return !enemy.isKilled
+      })
     }
 
     gameOver() {
