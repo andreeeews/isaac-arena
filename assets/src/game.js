@@ -9,7 +9,7 @@ class Game {
         this.background = new Background(this.ctx);
         this.isaac = new Isaac(this.ctx, 400-20, 300-40);
         // -20 es el el resultado del ancho del persona-el ancho del escenario, los mismo para 40.
-        this.enemy = new Enemy(this.ctx);
+        this.enemies = [];
         //this.audio
 
         this.tick = 0;
@@ -32,7 +32,8 @@ class Game {
             this.clear();
             this.move();
             this.draw();
-            this.checkCollisions()
+            this.checkCollisions();
+            this.addEnemy();
         }, 1000 / this.fps);
     }
 
@@ -41,15 +42,25 @@ class Game {
         this.drawIntervalId = undefined;
     }
 
+    addEnemy() {
+        this.tick++;
+    
+        // we add new enemy every 100 times we draw!
+        if (this.tick > 100 && this.enemies.length < 3) {
+          this.tick = 0;
+          this.enemies.push(new Enemy(this.ctx));
+        }
+      }
+    
     draw() {
         this.background.draw();
         this.isaac.draw();
-        this.enemy.draw();
+        this.enemies.forEach((e) => e.draw());
     }
 
     move() {
         this.isaac.move();
-        this.enemy.move(this.isaac);
+        this.enemies.forEach((e) => e.move(this.isaac));
         
     }
 
@@ -58,9 +69,16 @@ class Game {
     }
 
     checkCollisions() {
-        if (this.isaac.collideWith(this.enemy)) {
+        const player = this.isaac;
+
+        this.enemies.forEach((e) => {
+          const colx = player.x + player.w >= e.x && player.x < e.x + e.w;
+          const coly = player.y + player.h >= e.y && player.y < e.y + e.h;
+    
+          if (colx && coly) {
             this.gameOver();
-        }
+          }
+        })
     }
 
     gameOver() {
