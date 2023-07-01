@@ -11,7 +11,6 @@ class Game {
         // -20 es el el resultado del ancho del persona-el ancho del escenario, los mismo para 40.
         this.enemies = [];
         //this.audio
-
         this.tick = 0;
     }
 
