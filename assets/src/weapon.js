@@ -11,7 +11,7 @@ class Weapon {
     shoot(direction) {
         this.tick++
         
-        if (this.tick > 10) {
+        if (this.tick > SHOOT_INTERVAL) {
         const newBullet = new Bullet(this.ctx, this.x, this.y, direction);
         this.bullets.push(newBullet);
         this.tick = 0

@@ -13,6 +13,7 @@ class Game {
         //this.audio
         this.tick = 0;
         this.score = 0;
+
     }
 
     onKeyEvent(event) {
@@ -46,7 +47,7 @@ class Game {
     addEnemy() {
         this.tick++;
 
-        if (this.tick > 100 && this.enemies.length < 3) {
+        if (this.tick > ENEMY_FREQUENCY && this.enemies.length < MAX_ENEMY) {
           this.tick = 0;
           this.enemies.push(new Enemy(this.ctx));
         }
@@ -56,7 +57,7 @@ class Game {
         this.background.draw();
         this.isaac.draw();
         this.enemies.forEach((e) => e.draw());
-        document.getElementById('score').innerHTML = this.score.toString();
+        //document.getElementById('score').innerText = this.score.toString();
     }
 
     move() {
@@ -71,6 +72,7 @@ class Game {
 
     checkCollisions() {
         const player = this.isaac;
+        this.isaac
 
         this.enemies.forEach((e) => {
           const colx = player.x + player.w >= e.x && player.x < e.x + e.w;
@@ -101,5 +103,7 @@ class Game {
 
     gameOver() {
         this.stop();
+        this.ctx.font = "bold 70px verdana"
+        this.ctx.fillText("LOSE", this.canvas.width / 2, this.canvas.height / 2)
     }
 }
