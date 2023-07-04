@@ -105,5 +105,9 @@ class Game {
         this.stop();
         this.ctx.font = "bold 70px verdana"
         this.ctx.fillText("LOSE", this.canvas.width / 2, this.canvas.height / 2)
+
+        setTimeout(() => {
+          location.reload();
+        }, 3000);
     }
 }

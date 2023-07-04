@@ -1,5 +1,6 @@
 body {
   overflow-y: hidden;
+  background-image: url("/assets/img/background.png");
 }
 
 /*canvas {
@@ -11,6 +12,8 @@ body {
   display: flex;
   justify-content: center;
   width: 100%;
+  margin-top: 225px;
+  left: -22px
 }
 
 .non-visible {
@@ -39,7 +42,9 @@ body {
 
 .game-container {
   display: flex;
-
+  position: relative;
+  margin-top: 225px;
+  left: -22px;
   justify-content: center;
   width: 100%;
 }
@@ -49,8 +54,8 @@ body {
   flex-direction: column;
   gap: 127px;
   position: absolute;
-  top: 102px;
-  left: 609px;
+  top: 94px;
+  left: 851px;
   font-family: 'Russo One', sans-serif;
   font-size: 50px;
   font-weight: bold;
@@ -61,7 +66,6 @@ body {
   position: relative;
   top: -395px;
   left: 13px;
-
   flex-direction: column;
   align-items: center;
   width: 100%;
@@ -72,8 +76,6 @@ body {
   width: 50px; 
   height: 20px; 
 }
-
-
 
 .buttons span {
   width: 100px;
