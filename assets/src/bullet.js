@@ -17,6 +17,7 @@ class Bullet {
     draw() {
         this.ctx.beginPath();
         this.ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
+        this.ctx.fillStyle = "black";
         this.ctx.fill();
         this.ctx.closePath();
     }
@@ -56,9 +57,4 @@ class Bullet {
             this.shouldRemove = true;
         }
     }
-        
-        
-        
-        
-        
-    }
+}

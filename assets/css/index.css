@@ -81,6 +81,14 @@ body {
   width: 100px;
   max-height: 50px;
   object-fit: cover;
+  color: black;
+  transition: color 0.1s;
+  transform: 0.3s;
+}
+
+.buttons span:hover {
+  color: red;
+  transform: scale(1.1);
 }
 
 .image-container {

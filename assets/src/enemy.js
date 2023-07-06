@@ -1,8 +1,8 @@
 class Enemy {
     constructor(ctx) {
         this.ctx = ctx;
-        this.x = 0;
-        this.y = 0;
+        this.x = Math.random() > 0.5 ? 850 : -50
+        this.y = Math.random() > 0.5 ? 650 : -50
         this.w = 50;
         this.h = 50;
 
@@ -17,8 +17,6 @@ class Enemy {
         this.sprite.verticalFrameIndex = 0;
 
         this.isKilled = false;
-
-        
 
         this.sprite.onload = () => {
             this.sprite.isReady = true;
