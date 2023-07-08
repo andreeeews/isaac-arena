@@ -57,7 +57,12 @@ class Game {
 
     if (this.tick > ENEMY_FREQUENCY && this.enemies.length < MAX_ENEMY) {
       this.tick = 0;
-      this.enemies.push(new Enemy(this.ctx));
+      if (this.scoreLevelUp <= 4) {
+        this.enemies.push(new Enemy(this.ctx));
+      } else {
+        this.enemies.push(new Boss(this.ctx))
+      }
+
     }
   }
 
@@ -65,11 +70,13 @@ class Game {
     this.background.draw();
     this.isaac.draw();
     this.enemies.forEach((e) => e.draw());
+
   }
 
   move() {
     this.isaac.move();
     this.enemies.forEach((e) => e.move(this.isaac));
+
   }
 
   clear() {
@@ -144,6 +151,7 @@ class Game {
       this.ctx.fillText("LEVEL 4", 372, 30);
 
     } else if (this.scoreLevelUp === 5) {
+      
       this.ctx.font = "24px Impact";
       this.ctx.fillStyle = "red";
       this.ctx.fillText("LAST LEVEL! BOSS TIME!", 300, 30);

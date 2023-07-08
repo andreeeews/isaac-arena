@@ -6,9 +6,6 @@ class Enemy {
         this.w = 50;
         this.h = 50;
 
-        this.vx = 1;
-        this.vy = 1;
-
         this.animationTick = 0;
         this.sprite = new Image();
         this.sprite.src = "/assets/img/flyanim.png"
