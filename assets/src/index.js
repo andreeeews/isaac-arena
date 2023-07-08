@@ -1,5 +1,9 @@
 const canvasId = "main-canvas";
 const canvas = document.getElementById(canvasId);
+const hoverAudio = new Audio("/assets/sounds/MOUSE_HOVER.wav")
+const selectAudio = new Audio("/assets/sounds/OPTION_SELECT.wav")
+
+
 
 const game = new Game(canvasId)
 
@@ -12,6 +16,7 @@ window.addEventListener("keyup", (event) => {
 });
 
 document.getElementById("options").addEventListener("click", () => {
+    selectAudio.play();
     document.getElementById("start").classList.add("hidden");
     document.getElementById("options").classList.add("hidden");
     document.getElementById("configForm").classList.add("visible");
@@ -23,6 +28,7 @@ document.getElementById("configForm").addEventListener("submit", function(event)
     document.getElementById("configForm").classList.add("non-visible");
     document.getElementById("start").classList.remove("hidden");
     document.getElementById("options").classList.remove("hidden");
+    selectAudio.play();
 
     let playerSpeed = parseInt(document.getElementById("playerSpeed").value);
     let enemySpeed = parseInt(document.getElementById("enemySpeed").value);
@@ -43,6 +49,14 @@ document.getElementById("configForm").addEventListener("submit", function(event)
     
 });
 
+const buttons = document.querySelectorAll('.buttons');
+
+buttons.forEach(button => {
+  button.addEventListener('mouseover', () => {
+    hoverAudio.play();
+  });
+});
+
 
 
 document.getElementById("start").addEventListener("click", () => {
@@ -53,6 +67,8 @@ document.getElementById("start").addEventListener("click", () => {
     
 
     game.start();
+    game.startTheme.volume = 0.3;
+    game.startTheme.play();
 })
 
 

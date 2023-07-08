@@ -127,4 +127,6 @@ class Isaac {
 
         this.weapon.move();
     }
+
+
 }

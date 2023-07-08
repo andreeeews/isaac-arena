@@ -15,6 +15,7 @@ class Weapon {
         const newBullet = new Bullet(this.ctx, this.x, this.y, direction);
         this.bullets.push(newBullet);
         this.tick = 0
+        this.fireSound("/assets/sounds/FIRE.wav")
         }
     }
 
@@ -32,5 +33,10 @@ class Weapon {
         this.bullets.forEach((bullet) => {
             bullet.move();
         });
+    }
+
+    fireSound (sound) {
+        const audio = new Audio(sound);
+        audio.play();
     }
 }

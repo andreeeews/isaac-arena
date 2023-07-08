@@ -8,11 +8,14 @@ class Game {
 
     this.background = new Background(this.ctx);
     this.isaac = new Isaac(this.ctx, 400 - 20, 300 - 40);
-    // -20 es el el resultado del ancho del persona-el ancho del escenario, los mismo para 40.
     this.enemies = [];
-    //this.audio
     this.tick = 0;
     this.scoreLevelUp = 0;
+
+    this.startTheme = new Audio("/assets/sounds/start_music.webm")
+    this.basementTheme = new Audio("/assets/sounds/basement_theme.webm")
+    this.playerDeath = new Audio("/assets/sounds/playerdeath.wav")
+
   }
 
   onKeyEvent(event) {
@@ -28,6 +31,11 @@ class Game {
   }
 
   start() {
+    setTimeout(() => {
+      this.basementTheme.volume = 0.02;
+      this.basementTheme.play();
+    }, 2000)
+
     this.drawIntervalId = setInterval(() => {
       this.clear();
       this.move();
@@ -70,14 +78,14 @@ class Game {
 
   checkCollisions() {
     const player = this.isaac;
-    this.isaac;
 
     this.enemies.forEach((e) => {
-      const colx =
-        player.x + (player.w - 20) >= e.x && player.x < e.x + (e.w - 20);
+      const colx = player.x + (player.w - 20) >= e.x && player.x < e.x + (e.w - 20);
       const coly = player.y + (player.h - 10) >= e.y && player.y < e.y + e.h;
 
       if (colx && coly) {
+        this.playerDeath.volume = 0.1;
+        this.playerDeath.play();
         this.gameOver();
       }
     });

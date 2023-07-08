@@ -54,7 +54,13 @@ class Bullet {
             this.y + this.r > enemy.y
         ) {
             enemy.killed();
+            this.impactSound("/assets/sounds/impact.wav")
             this.shouldRemove = true;
         }
+    }
+
+    impactSound (sound) {
+        const audio = new Audio(sound);
+        audio.play();
     }
 }
