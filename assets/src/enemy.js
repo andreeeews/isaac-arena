@@ -9,6 +9,7 @@ class Enemy {
         this.vx = 1;
         this.vy = 1;
 
+        this.animationTick = 0;
         this.sprite = new Image();
         this.sprite.src = "/assets/img/flyanim.png"
         this.sprite.horizontalFrames = 4;
@@ -16,6 +17,11 @@ class Enemy {
         this.sprite.verticalFrames = 1;
         this.sprite.verticalFrameIndex = 0;
 
+        this.flyAudio = new Audio("/assets/sounds/MOSCA.wav")
+        this.flyAudio.volume = 1;
+
+        this.maxHealth = 2;
+        this.health = this.maxHealth
         this.isKilled = false;
 
         this.sprite.onload = () => {
@@ -42,11 +48,29 @@ class Enemy {
                 this.w,
                 this.h
             )
-                if (DEBUG) {
+
+            const barWidth = 40; 
+            const barHeight = 5; 
+            const barX = this.x + this.w / 2 - barWidth / 2; 
+            const barY = this.y + this.h + 5; 
+            const healthPercentage = this.health / this.maxHealth;
+            const barFillWidth = barWidth / healthPercentage;
+            this.ctx.fillStyle = 'gray';
+            this.ctx.fillRect(barX, barY, barWidth, barHeight);
+            this.ctx.fillStyle = 'red';
+            this.ctx.fillRect(barX, barY, barFillWidth, barHeight);
+            this.ctx.strokeStyle = 'black';
+            this.ctx.lineWidth = 1;
+            this.ctx.strokeRect(barX, barY, barWidth, barHeight);
+
+            if (DEBUG) {
                 Utils.drawDebugRect(this.ctx, this.x, this.y, this.w, this.h)
             }
+
+            this.animation();
+            this.flyAudio.play()
         }
-    
+
     }
 
     move(isaac) {
@@ -64,7 +88,20 @@ class Enemy {
     }
 
     killed() {
-        this.isKilled = !this.isKilled;
+        this.isKilled = true;
+    };
+    
+    animation() {
+        this.animationTick++;
+            
+        if (this.animationTick > 2) {
+          this.animationTick = 0;
+          this.sprite.horizontalFrameIndex++;
+    
+          if (this.sprite.horizontalFrameIndex > this.sprite.horizontalFrames - 1) {
+            this.sprite.horizontalFrameIndex = 0;
+          }
+        }        
     }
-
 }
+

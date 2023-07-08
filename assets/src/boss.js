@@ -10,12 +10,13 @@ class Boss {
         this.vy = 1;
 
         this.sprite = new Image();
-        this.sprite.src = "/assets/img/flyanim.png"
-        this.sprite.horizontalFrames = 4;
+        this.sprite.src = "/assets/img/dukeswarmanim.png"
+        this.sprite.horizontalFrames = 7;
         this.sprite.horizontalFrameIndex = 0;
         this.sprite.verticalFrames = 1;
         this.sprite.verticalFrameIndex = 0;
 
+        this.hits = 0;
         this.isKilled = false;
 
         this.sprite.onload = () => {
@@ -64,7 +65,9 @@ class Boss {
     }
 
     killed() {
-        this.isKilled = !this.isKilled;
+        if(this.hits <= 5) {
+            this.isKilled = true;
+        }
     }
 
 }

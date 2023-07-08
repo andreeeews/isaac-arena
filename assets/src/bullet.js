@@ -53,7 +53,13 @@ class Bullet {
             this.y < enemy.y + enemy.h &&
             this.y + this.r > enemy.y
         ) {
-            enemy.killed();
+            enemy.maxHealth -= 1
+            console.log(enemy.maxHealth)
+            if (enemy.maxHealth === 0) {
+                console.log("muerto")
+                enemy.killed();
+            }
+
             this.impactSound("/assets/sounds/impact.wav")
             this.shouldRemove = true;
         }
