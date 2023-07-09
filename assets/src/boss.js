@@ -6,8 +6,8 @@ class Boss {
     this.w = 50 * 2;
     this.h = 50 * 2;
 
-    this.vx = 4;
-    this.vy = 4;
+    this.vx = 0;
+    this.vy = 0;
 
     this.sprite = new Image();
     this.sprite.src = "/assets/img/dukeswarmanim.png";
@@ -31,6 +31,16 @@ class Boss {
     };
   }
 
+  shoot(direction) {
+    this.tick++
+    
+    if (this.tick > 10) {
+    const newEnemyBullet = new EnemyBullet(this.ctx, this.x, this.y, direction);
+    this.enemyBullets.push(newEnemyBullet);
+    this.tick = 0
+    }
+}
+
   draw() {
     if (this.sprite.isReady) {
       this.ctx.drawImage(
@@ -52,17 +62,22 @@ class Boss {
   }
 
   move(isaac) {
-    if (isaac.x > this.x) {
-      this.x += this.vx
-    } else if (isaac.x < this.x) {
-      this.x -= this.vx
-    }
+    const dx = isaac.x - this.x;
+    const dy = isaac.y - this.y;
 
-    if (isaac.y > this.y) {
-      this.y += this.vy
-    } else if (isaac.y < this.y) {
-      this.y -= this.vy
-    }
+    const angle = Math.atan2(dy, dx);
+
+    const targetSpeed = ENEMY_SPEED;
+    const vx = Math.cos(angle) * targetSpeed;
+    const vy = Math.sin(angle) * targetSpeed;
+
+    const easing = 0.1;
+
+    const interpolatedVx = this.vx + (vx - this.vx) * easing;
+    const interpolatedVy = this.vy + (vy - this.vy) * easing;
+
+    this.x += interpolatedVx;
+    this.y += interpolatedVy;
   }
 
   killed() {

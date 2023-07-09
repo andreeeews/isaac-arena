@@ -86,9 +86,16 @@ body {
   transform: 0.3s;
 }
 
-.buttons span:hover {
+.buttons span:hover, .buttons button:hover {
   color: red;
   transform: scale(1.1);
+}
+
+.buttons button:hover {
+  border: 0;
+  background-color: blue;
+  border-radius: 5px;
+  padding: 50px;
 }
 
 .image-container {

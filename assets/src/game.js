@@ -10,6 +10,7 @@ class Game {
     this.isaac = new Isaac(this.ctx, 400 - 20, 300 - 40);
     this.enemies = [];
     this.tick = 0;
+    this.tickEnemyShoot = 0;
     this.scoreLevelUp = 0;
 
     this.startTheme = new Audio("/assets/sounds/start_music.webm")
@@ -44,6 +45,7 @@ class Game {
       this.clearEnemy();
       this.levelUp();
       this.addEnemy();
+      this.shootEnemy();
     }, 1000 / this.fps);
   }
 
@@ -60,8 +62,25 @@ class Game {
       if (this.scoreLevelUp <= 4) {
         this.enemies.push(new Enemy(this.ctx));
       } else {
+        MAX_ENEMY = 1
         this.enemies.push(new Boss(this.ctx))
       }
+
+    }
+  }
+
+  shootEnemy() {
+    this.tickEnemyShoot++;
+
+    if (this.tickEnemyShoot > 30) {
+      this.tickEnemyShoot = 0;
+      this.enemies.forEach((enemy) => {
+        if (true) {
+          enemy.shoot(this.isaac)
+        }
+        
+      })
+
 
     }
   }
@@ -100,6 +119,13 @@ class Game {
     player.weapon.bullets.forEach((bullet) => {
       this.enemies.forEach((enemy) => {
         bullet.collideWith(enemy);
+      });
+    });
+
+    
+    this.enemies.forEach((enemy) => {
+      enemy.bullets.forEach((bullet) => {
+        bullet.collideWithIsaac(player);
       });
     });
   }
@@ -156,15 +182,24 @@ class Game {
       this.ctx.fillStyle = "red";
       this.ctx.fillText("LAST LEVEL! BOSS TIME!", 300, 30);
 
-    } else if (this.scoreLevelUp === 6) {
-      this.ctx.font = "24px Impact";
-      this.ctx.fillStyle = "red";
-      this.ctx.fillText("YOU WIN!", 300, 30);
+    } else if (this.enemies.length === 0) {
+      const image = new Image();
+      image.src = "/assets/img/win.png"
+
+      const self = this; // Guarda una referencia al objeto actual para usarla dentro de la función onload
+
+      image.onload = function() {
+        
+        const scaleWidth = image.width*0.4
+        const scaleHeight = image.height*0.4
+        self.ctx.drawImage(image, 20, 250, scaleWidth, scaleHeight); // Utiliza self.ctx en lugar de image.ctx
+      };
+      
       this.stop();
 
       setTimeout(() => {
         location.reload();
-      }, 3000);
+      }, 10000);
     }
   }
 }
