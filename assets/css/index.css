@@ -7,13 +7,69 @@ body {
   border: 1px solid black;
 }*/
 
+.d-1 {
+  font-family: "Russo One", sans-serif;
+  font-size: 15px;
+  margin-top: -20px;
+  margin-left: 25px;
+
+  
+  --c: #0e7d81; /* the color */
+  --b: 0.1em; /* border length*/
+  --d: 20px; /* the cube depth */
+  --h: 1.2em; /* the height */
+
+  --_s: calc(var(--d) + var(--b));
+
+  line-height: var(--h);
+  color: #0000;
+  text-shadow: 0 calc(-1 * var(--_t, 0em)) var(--c),
+    0 calc(var(--h) - var(--_t, 0em)) #fff;
+  border: solid #0000;
+  overflow: hidden;
+  border-width: var(--b) var(--b) var(--_s) var(--_s);
+  background: linear-gradient(var(--c) 0 0) 100% 100% /101% var(--_p, 0%) no-repeat,
+    conic-gradient(
+        at left var(--d) bottom var(--d),
+        #0000 90deg,
+        rgb(255 255 255 /0.3) 0 225deg,
+        rgb(255 255 255 /0.6) 0
+      )
+      border-box,
+    conic-gradient(at left var(--_s) bottom var(--_s), #0000 90deg, var(--c) 0)
+      0 100% / calc(100% - var(--b)) calc(100% - var(--b)) border-box;
+  transform: translate(calc(var(--d) / -1), var(--d));
+  clip-path: polygon(
+    var(--d) 0%,
+    var(--d) 0%,
+    100% 0%,
+    100% calc(100% - var(--d)),
+    100% calc(100% - var(--d)),
+    var(--d) calc(100% - var(--d))
+  );
+  transition: 0.5s;
+}
+.d-1:hover {
+  transform: translate(0, 0);
+  clip-path: polygon(
+    0% var(--d),
+    var(--d) 0%,
+    100% 0%,
+    100% calc(100% - var(--d)),
+    calc(100% - var(--d)) 100%,
+    0% 100%
+  );
+  --_t: var(--h);
+  --_p: 105%;
+}
+
 .menu-container {
   position: relative;
   display: flex;
   justify-content: center;
   width: 100%;
   margin-top: 225px;
-  left: -22px
+  left: -22px;
 }
 
 .non-visible {
@@ -56,7 +112,7 @@ body {
   position: absolute;
   top: 94px;
   left: 851px;
-  font-family: 'Russo One', sans-serif;
+  font-family: "Russo One", sans-serif;
   font-size: 50px;
   font-weight: bold;
 }
@@ -65,7 +121,7 @@ body {
   font-size: 15px;
   position: relative;
   top: -395px;
-  left: 13px;
+  left: -28px;
   flex-direction: column;
   align-items: center;
   width: 100%;
@@ -73,8 +129,13 @@ body {
 
 #configForm input[type="number"],
 #configForm input[type="checkbox"] {
-  width: 50px; 
-  height: 20px; 
+  width: 50px;
+  height: 20px;
+  background: none;
+  border: 1px solid black;
+  font-family: "Russo One", sans-serif;
+  text-align: center;
+  color: #381004;
 }
 
 .buttons span {
@@ -84,19 +145,16 @@ body {
   color: black;
   transition: color 0.1s;
   transform: 0.3s;
+
 }
 
-.buttons span:hover, .buttons button:hover {
+.buttons span:hover {
   color: red;
   transform: scale(1.1);
+  
 }
 
-.buttons button:hover {
-  border: 0;
-  background-color: blue;
-  border-radius: 5px;
-  padding: 50px;
-}
+
 
 .image-container {
   width: 800px;

@@ -12,11 +12,12 @@ class Game {
     this.tick = 0;
     this.tickEnemyShoot = 0;
     this.scoreLevelUp = 0;
+    this.spawnCheck = 0;
+    this.spawnBoss = false;
 
-    this.startTheme = new Audio("/assets/sounds/start_music.webm")
-    this.basementTheme = new Audio("/assets/sounds/basement_theme.webm")
-    this.playerDeath = new Audio("/assets/sounds/playerdeath.wav")
-
+    this.startTheme = new Audio("/assets/sounds/start_music.webm");
+    this.basementTheme = new Audio("/assets/sounds/basement_theme.webm");
+    this.playerDeath = new Audio("/assets/sounds/playerdeath.wav");
   }
 
   onKeyEvent(event) {
@@ -35,7 +36,7 @@ class Game {
     setTimeout(() => {
       this.basementTheme.volume = 0.02;
       this.basementTheme.play();
-    }, 2000)
+    }, 2000);
 
     this.drawIntervalId = setInterval(() => {
       this.clear();
@@ -59,29 +60,27 @@ class Game {
 
     if (this.tick > ENEMY_FREQUENCY && this.enemies.length < MAX_ENEMY) {
       this.tick = 0;
-      if (this.scoreLevelUp <= 4) {
+      if (this.spawnCheck < 32) {
+        this.spawnCheck++;
         this.enemies.push(new Enemy(this.ctx));
-      } else {
-        MAX_ENEMY = 1
-        this.enemies.push(new Boss(this.ctx))
+      } else if (!this.spawnBoss) {
+        ENEMY_SHOTINTERVAL = 50;
+        this.enemies.push(new Boss(this.ctx));
+        this.spawnBoss = true;
       }
-
     }
   }
 
   shootEnemy() {
     this.tickEnemyShoot++;
 
-    if (this.tickEnemyShoot > 30) {
+    if (this.tickEnemyShoot > ENEMY_SHOTINTERVAL) {
       this.tickEnemyShoot = 0;
       this.enemies.forEach((enemy) => {
         if (true) {
-          enemy.shoot(this.isaac)
+          enemy.shoot(this.isaac);
         }
-        
-      })
-
-
+      });
     }
   }
 
@@ -89,13 +88,15 @@ class Game {
     this.background.draw();
     this.isaac.draw();
     this.enemies.forEach((e) => e.draw());
-
   }
 
   move() {
     this.isaac.move();
     this.enemies.forEach((e) => e.move(this.isaac));
 
+    this.enemies.forEach((enemy) => {
+      enemy.draw();
+    });
   }
 
   clear() {
@@ -106,7 +107,8 @@ class Game {
     const player = this.isaac;
 
     this.enemies.forEach((e) => {
-      const colx = player.x + (player.w - 20) >= e.x && player.x < e.x + (e.w - 20);
+      const colx =
+        player.x + (player.w - 20) >= e.x && player.x < e.x + (e.w - 20);
       const coly = player.y + (player.h - 10) >= e.y && player.y < e.y + e.h;
 
       if (colx && coly) {
@@ -122,7 +124,6 @@ class Game {
       });
     });
 
-    
     this.enemies.forEach((enemy) => {
       enemy.bullets.forEach((bullet) => {
         bullet.collideWithIsaac(player);
@@ -134,72 +135,73 @@ class Game {
     this.enemies = this.enemies.filter((enemy) => {
       if (enemy.isKilled) {
         this.scoreLevelUp += 1;
+        console.log(this.scoreLevelUp);
       }
       return !enemy.isKilled;
     });
   }
 
   gameOver() {
+    const image = new Image();
+    image.src = "/assets/img/defeat.png";
+
+    const self = this; // Guarda una referencia al objeto actual para usarla dentro de la función onload
+
+    image.onload = function () {
+      const scaleWidth = image.width * 0.4;
+      const scaleHeight = image.height * 0.4;
+      self.ctx.drawImage(image, 60, 250, scaleWidth, scaleHeight); // Utiliza self.ctx en lugar de image.ctx
+    }
+
     this.stop();
-    this.ctx.fillStyle = "black";
-    this.ctx.font = "bold 70px Impact";
-    this.ctx.fillText("¡Has perdido!", 150, this.canvas.height / 2);
 
     setTimeout(() => {
       location.reload();
-    }, 3000);
+    }, 10000);
   }
 
   levelUp() {
-    if (this.scoreLevelUp === 0) {
+    if (this.scoreLevelUp <= 6) {
       this.ctx.font = "24px Impact";
       this.ctx.fillStyle = "red";
       this.ctx.fillText("LEVEL 1", 372, 30);
-      
-    } else if (this.scoreLevelUp === 1) {
+    } else if (this.scoreLevelUp <= 12) {
       this.ctx.font = "24px Impact";
       this.ctx.fillStyle = "red";
       this.ctx.fillText("LEVEL 2", 372, 30);
-
-    } else if (this.scoreLevelUp === 2) {
+    } else if (this.scoreLevelUp <= 18) {
       this.ctx.font = "24px Impact";
       this.ctx.fillStyle = "red";
       this.ctx.fillText("LEVEL 3", 372, 30);
-
-    } else if (this.scoreLevelUp === 3) {
-      this.ctx.font = "24px Impact";
-      this.ctx.fillStyle = "red";
-      this.ctx.fillText("LEVEL 3", 372, 30);
-
-    } else if (this.scoreLevelUp === 4) {
+    } else if (this.scoreLevelUp <= 24) {
       this.ctx.font = "24px Impact";
       this.ctx.fillStyle = "red";
       this.ctx.fillText("LEVEL 4", 372, 30);
-
-    } else if (this.scoreLevelUp === 5) {
-      
+    } else if (this.scoreLevelUp <= 32) {
       this.ctx.font = "24px Impact";
       this.ctx.fillStyle = "red";
       this.ctx.fillText("LAST LEVEL! BOSS TIME!", 300, 30);
-
-    } else if (this.enemies.length === 0) {
-      const image = new Image();
-      image.src = "/assets/img/win.png"
-
-      const self = this; // Guarda una referencia al objeto actual para usarla dentro de la función onload
-
-      image.onload = function() {
-        
-        const scaleWidth = image.width*0.4
-        const scaleHeight = image.height*0.4
-        self.ctx.drawImage(image, 20, 250, scaleWidth, scaleHeight); // Utiliza self.ctx en lugar de image.ctx
-      };
-      
-      this.stop();
-
-      setTimeout(() => {
-        location.reload();
-      }, 10000);
+    } else if (this.scoreLevelUp === 33) {
+      this.finisGame();
     }
+  }
+
+  finisGame() {
+    const image = new Image();
+    image.src = "/assets/img/win.png";
+
+    const self = this; // Guarda una referencia al objeto actual para usarla dentro de la función onload
+
+    image.onload = function () {
+      const scaleWidth = image.width * 0.4;
+      const scaleHeight = image.height * 0.4;
+      self.ctx.drawImage(image, 20, 250, scaleWidth, scaleHeight); // Utiliza self.ctx en lugar de image.ctx
+    };
+
+    this.stop();
+
+    setTimeout(() => {
+      location.reload();
+    }, 10000);
   }
 }

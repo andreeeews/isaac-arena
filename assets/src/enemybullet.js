@@ -1,23 +1,23 @@
 class EnemyBullet {
     constructor(ctx, x, y, vx, vy) {
-        this.ctx = ctx;
-        this.x = x;
-        this.y = y;
-        this.vx = BULLET_SPEED * vx;
-        this.vy = BULLET_SPEED * vy;
-        this.r = 3;
-
-        this.shouldRemove = false;
-        this.isKilled = false;
+      this.ctx = ctx;
+      this.x = x;
+      this.y = y;
+      this.vx = BULLET_SPEED * vx;
+      this.vy = BULLET_SPEED * vy;
+      this.r = 5;
+  
+      this.shouldRemove = false;
+      this.isKilled = false;
+  
+      this.image = new Image();
+      this.image.src = "/assets/img/enemybullet.png";
     }
-
+  
     draw() {
-        this.ctx.beginPath();
-        this.ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
-        this.ctx.fillStyle = "black";
-        this.ctx.fill();
-        this.ctx.closePath();
+      this.ctx.drawImage(this.image, this.x - this.r, this.y - this.r, this.r * 2, this.r * 2);
     }
+  
 
     move() {
         this.x += this.vx;

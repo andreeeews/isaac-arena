@@ -3,8 +3,8 @@ class Isaac {
         this.ctx = ctx;
         this.x = x;
         this.y = y;
-        this.w = 30*2;
-        this.h = 30*2;
+        this.w = 40;
+        this.h = 40;
 
         this.vx = 0;
         this.vy = 0;
