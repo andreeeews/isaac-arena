@@ -14,10 +14,10 @@ body {
   margin-left: 25px;
 
   
-  --c: #0e7d81; /* the color */
-  --b: 0.1em; /* border length*/
-  --d: 20px; /* the cube depth */
-  --h: 1.2em; /* the height */
+  --c: #0e7d81; 
+  --b: 0.1em; 
+  --d: 20px;
+  --h: 1.2em;
 
   --_s: calc(var(--d) + var(--b));
 
