@@ -11,7 +11,7 @@ class EnemyBullet {
       this.isKilled = false;
   
       this.image = new Image();
-      this.image.src = "/assets/img/enemybullet.png";
+      this.image.src = "./assets/img/enemybullet.png";
     }
   
     draw() {
@@ -35,7 +35,7 @@ class EnemyBullet {
             this.y < isaac.y + isaac.h &&
             this.y + this.r > isaac.y
           ) {
-            this.impactSound("/assets/sounds/impact.wav");
+            this.impactSound("./assets/sounds/impact.wav");
             this.shouldRemove = true;
             game.gameOver();
           }

@@ -14,7 +14,7 @@ class Bullet {
       this.isKilled = false;
   
       this.image = new Image();
-      this.image.src = "/assets/img/bullet.png";
+      this.image.src = "./assets/img/bullet.png";
     }
   
     draw() {
@@ -59,7 +59,7 @@ class Bullet {
                 enemy.killed();
             }
 
-            this.impactSound("/assets/sounds/impact.wav")
+            this.impactSound("./assets/sounds/impact.wav")
             this.shouldRemove = true;
         }
     }

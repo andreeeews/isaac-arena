@@ -18,7 +18,7 @@ class Isaac {
     this.shooting = null;
 
     this.sprite = new Image();
-    this.sprite.src = "/assets/img/newisaac_sprite.png";
+    this.sprite.src = "./assets/img/newisaac_sprite.png";
     this.sprite.horizontalFrames = 3;
     this.sprite.horizontalFrameIndex = 0
     this.sprite.verticalFrames = 4;

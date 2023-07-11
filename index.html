@@ -1,69 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Isaac Arena</title>
-    <link rel="stylesheet" href="/assets/css/index.css"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link rel="stylesheet" href="./assets/css/index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <section class="menu-container visible">
-        <img class="image-container" src="/assets/img/background-container.jpg"/>
-        <img class="image-container non-visible" src="/assets/img/background-container.jpg"/>
-        <div class="buttons">
-            <span id="start">START</span>
-            <span id="options">OPTIONS</span>
-            <form id="configForm" class="non-visible cfgForm ">
-                <label for="playerSpeed">Mov. Speed:</label>
-                <input type="number" id="playerSpeed" name="playerSpeed" value="6"><br>
-                
-                <label for="enemySpeed">E. Mov. Speed:</label>
-                <input type="number" id="enemySpeed" name="enemySpeed" value="25"><br>
-                
-                <label for="bulletSpeed">Bullet Speed:</label>
-                <input type="number" id="bulletSpeed" name="bulletSpeed" value="3"><br>
-                
-                <label for="shootInterval">Shoot freq.:</label>
-                <input type="number" id="shootInterval" name="shootInterval" value="750"><br>
-                
-                <label for="maxEnemy">Max. enemies:</label>
-                <input type="number" id="maxEnemy" name="maxEnemy" value="32"><br>
-                
-                <label for="enemyFrequency">Enemy freq.:</label>
-                <input type="number" id="enemyFrequency" name="enemyFrequency" value="100"><br>
-                
-                <label for="debug">Debug?:</label>
-                <input type="checkbox" id="debug" name="debug" unchecked><br>
-                
-                <button type="submit" class="d-1" >Guardar configuración</button>
-            </form>   
-        </div>
+      <img class="image-container" src="./assets/img/background-container.jpg" />
+      <img
+        class="image-container non-visible"
+        src="./assets/img/background-container.jpg"
+      />
+      <div class="buttons">
+        <span id="start">START</span>
+        <span id="options">OPTIONS</span>
+        <form id="configForm" class="non-visible cfgForm">
+          <label for="playerSpeed">Mov. Speed:</label>
+          <input
+            type="number"
+            id="playerSpeed"
+            name="playerSpeed"
+            value="6"
+          /><br />
+
+          <label for="enemySpeed">E. Mov. Speed:</label>
+          <input
+            type="number"
+            id="enemySpeed"
+            name="enemySpeed"
+            value="25"
+          /><br />
+
+          <label for="bulletSpeed">Bullet Speed:</label>
+          <input
+            type="number"
+            id="bulletSpeed"
+            name="bulletSpeed"
+            value="3"
+          /><br />
+
+          <label for="shootInterval">Shoot freq.:</label>
+          <input
+            type="number"
+            id="shootInterval"
+            name="shootInterval"
+            value="750"
+          /><br />
+
+          <label for="maxEnemy">Max. enemies:</label>
+          <input type="number" id="maxEnemy" name="maxEnemy" value="32" /><br />
+
+          <label for="enemyFrequency">Enemy freq.:</label>
+          <input
+            type="number"
+            id="enemyFrequency"
+            name="enemyFrequency"
+            value="100"
+          /><br />
+
+          <label for="debug">Debug?:</label>
+          <input type="checkbox" id="debug" name="debug" unchecked /><br />
+
+          <button type="submit" class="d-1">Guardar configuración</button>
+        </form>
+      </div>
     </section>
 
     <section class="game-container hidden">
-        <canvas id="main-canvas" class="visible" width="800" height="600"></canvas>
-         <!-- <div>
+      <canvas
+        id="main-canvas"
+        class="visible"
+        width="800"
+        height="600"
+      ></canvas>
+      <!-- <div>
            <h1 class="non-visible">Score:</h1><span id="score" class="non-visible">0</span>
                 <section class="shop-items non-visible">
                     asdfasdf
             </section> 
         </div>   -->
     </section>
-    
 
-    <script src="/assets/src/constants.js"></script>
-    <script src="/assets/src/utils.js"></script>
-    <script src="/assets/src/background.js"></script>
-    <script src="/assets/src/bullet.js"></script>
-    <script src="/assets/src/enemybullet.js"></script>
-    <script src="/assets/src/weapon.js"></script>
-    <script src="/assets/src/enemy.js"></script>
-
+    <script src="./assets/src/constants.js"></script>
+    <script src="./assets/src/utils.js"></script>
+    <script src="./assets/src/background.js"></script>
+    <script src="./assets/src/bullet.js"></script>
+    <script src="./assets/src/enemybullet.js"></script>
+    <script src="./assets/src/weapon.js"></script>
+    <script src="./assets/src/enemy.js"></script>
     <script src="/assets/src/isaac.js"></script>
     <script src="/assets/src/game.js"></script>
     <script src="/assets/src/index.js"></script>
-</body>
+  </body>
 </html>

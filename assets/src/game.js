@@ -15,9 +15,9 @@ class Game {
     this.spawnCheck = 0;
     this.spawnBoss = false;
 
-    this.startTheme = new Audio("/assets/sounds/start_music.webm");
-    this.basementTheme = new Audio("/assets/sounds/basement_theme.webm");
-    this.playerDeath = new Audio("/assets/sounds/playerdeath.wav");
+    this.startTheme = new Audio("./assets/sounds/start_music.webm");
+    this.basementTheme = new Audio("./assets/sounds/basement_theme.webm");
+    this.playerDeath = new Audio("./assets/sounds/playerdeath.wav");
   }
 
   onKeyEvent(event) {
@@ -143,7 +143,7 @@ class Game {
 
   gameOver() {
     const image = new Image();
-    image.src = "/assets/img/defeat.png";
+    image.src = "./assets/img/defeat.png";
 
     const self = this; // Guarda una referencia al objeto actual para usarla dentro de la función onload
 
@@ -188,7 +188,7 @@ class Game {
 
   finisGame() {
     const image = new Image();
-    image.src = "/assets/img/win.png";
+    image.src = "./assets/img/win.png";
 
     const self = this; // Guarda una referencia al objeto actual para usarla dentro de la función onload
 

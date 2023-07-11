@@ -12,13 +12,13 @@ class Enemy {
   
       this.animationTick = 0;
       this.sprite = new Image();
-      this.sprite.src = "/assets/img/flyanim.png";
+      this.sprite.src = "./assets/img/flyanim.png";
       this.sprite.horizontalFrames = 4;
       this.sprite.horizontalFrameIndex = 0;
       this.sprite.verticalFrames = 1;
       this.sprite.verticalFrameIndex = 0;
   
-      this.flyAudio = new Audio("/assets/sounds/MOSCA.wav");
+      this.flyAudio = new Audio("./assets/sounds/MOSCA.wav");
       this.flyAudio.volume = 1;
   
       this.maxHealth = 2;
@@ -149,7 +149,7 @@ class Enemy {
       this.h = 50 * 2;
   
       this.bossSprite = new Image();
-      this.bossSprite.src = "/assets/img/dukeswarmanim.png";
+      this.bossSprite.src = "./assets/img/dukeswarmanim.png";
       this.bossSprite.horizontalFrames = 7;
       this.bossSprite.horizontalFrameIndex = 0;
       this.bossSprite.verticalFrames = 1;
@@ -172,7 +172,7 @@ class Enemy {
         );
       };
   
-      this.bossSprite.src = "/assets/img/dukeswarmanim.png";
+      this.bossSprite.src = "./assets/img/dukeswarmanim.png";
     }
   
     draw() {

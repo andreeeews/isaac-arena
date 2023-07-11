@@ -8,7 +8,7 @@ class Background {
         this.h = this.ctx.canvas.height;
 
         this.sprite = new Image();
-        this.sprite.src = "/assets/img/bgcave.png";
+        this.sprite.src = "./assets/img/bgcave.png";
         this.sprite.onload = () => {
             this.sprite.isReady = true;
         }

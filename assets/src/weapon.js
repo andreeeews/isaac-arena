@@ -16,7 +16,7 @@ class Weapon {
         if (elapsedTime > SHOOT_INTERVAL) {
           const newBullet = new Bullet(this.ctx, this.x, this.y, direction);
           this.bullets.push(newBullet);
-          this.fireSound("/assets/sounds/FIRE.wav");
+          this.fireSound("./assets/sounds/FIRE.wav");
           this.lastShootTime = currentTime;
         }
       }

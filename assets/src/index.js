@@ -1,7 +1,7 @@
 const canvasId = "main-canvas";
 const canvas = document.getElementById(canvasId);
-const hoverAudio = new Audio("/assets/sounds/MOUSE_HOVER.wav")
-const selectAudio = new Audio("/assets/sounds/OPTION_SELECT.wav")
+const hoverAudio = new Audio("./assets/sounds/MOUSE_HOVER.wav")
+const selectAudio = new Audio("./assets/sounds/OPTION_SELECT.wav")
 
 
 
