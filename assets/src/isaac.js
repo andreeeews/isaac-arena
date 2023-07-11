@@ -4,11 +4,11 @@ class Isaac {
     this.x = x;
     this.y = y;
     this.w = 40;
-    this.h = 36;
+    this.h = 34;
 
     this.animationTick = 0;
     this.animationDirection = 0;
-    //this.isWalking = false;
+    this.isWalking = false;
 
     this.vx = 0;
     this.vy = 0;
@@ -56,8 +56,10 @@ class Isaac {
     }
 
     this.weapon.draw();
-    
-    this.animationWalk();
+
+        this.animationWalk();
+
+
     
   }
 
@@ -66,22 +68,22 @@ class Isaac {
       case KEY_UP:
         this.vy = -PLAYER_SPEED;
         this.animationDirection = 2;
-        //this.isWalking = true;
+        this.isWalking = true;
         break;
       case KEY_DOWN:
         this.vy = PLAYER_SPEED;
         this.animationDirection = 1;
-        //this.isWalking = true;
+        this.isWalking = true;
         break;
       case KEY_RIGHT:
         this.vx = PLAYER_SPEED;
         this.animationDirection = 3;
-        //this.isWalking = true;
+        this.isWalking = true;
         break;
       case KEY_LEFT:
         this.vx = -PLAYER_SPEED;
         this.animationDirection = 4;
-        //this.isWalking = true;
+        this.isWalking = true;
         break;
       case FIRE_RIGHT:
         this.shooting = "right";
@@ -109,18 +111,18 @@ class Isaac {
       case KEY_UP:
         this.vy = 0;
         this.animationDirection = 0;
-        //this.isWalking = false;
+        this.isWalking = false;
         break;
       case KEY_DOWN:
         this.vy = 0;
         this.animationDirection = 0;
-        //this.isWalking = false;
+        this.isWalking = false;
         break;
       case KEY_LEFT:
       case KEY_RIGHT:
         this.vx = 0;
         this.animationDirection = 0;
-        //this.isWalking = false;
+        this.isWalking = false;
         break;
     }
   }
@@ -152,42 +154,36 @@ class Isaac {
   }
 
   animationWalk() {
-    //if(this.isWalking) {
-        this.animationTick++;
-        //}
-   console.log(this.animationTick, "fuera del if")
-    if (this.animationTick > 3) {
+    this.animationTick++;
+  
+    if (this.isWalking) {
+      switch (this.animationDirection) {
+        case 1: // Movimiento hacia abajo
+          this.sprite.horizontalFrameIndex = 0;
+          this.sprite.verticalFrameIndex = 0;
+          break;
+        case 2: // Movimiento hacia arriba
+          this.sprite.horizontalFrameIndex = 0;
+          this.sprite.verticalFrameIndex = 3;
+          break;
+        case 3: // Movimiento hacia la derecha
+          this.sprite.horizontalFrameIndex = 0;
+          this.sprite.verticalFrameIndex = 2;
+          break;
+        case 4: // Movimiento hacia la izquierda
+          this.sprite.horizontalFrameIndex = 0;
+          this.sprite.verticalFrameIndex = 1;
+          break;
+      }
+  
+      if (this.animationTick > 3) {
         this.animationTick = 0;
         this.sprite.horizontalFrameIndex++;
-        console.log(this.sprite.horizontalFrameIndex, "horizontalFrameIndex")
-        console.log(this.sprite.horizontalFrames, "horizontalFrame")
+  
         if (this.sprite.horizontalFrameIndex > this.sprite.horizontalFrames - 1) {
           this.sprite.horizontalFrameIndex = 0;
         }
       }
-    
-
-    switch (this.animationDirection) {
-      case 1: // Movimiento hacia abajo
-        this.sprite.horizontalFrameIndex = 0;
-        this.sprite.verticalFrameIndex = 0;
-        break;
-      case 2: // Movimiento hacia arriba
-        this.sprite.horizontalFrameIndex = 0;
-        this.sprite.verticalFrameIndex = 3;
-        break;
-      case 3: // Movimiento hacia la derecha
-        this.sprite.horizontalFrameIndex = 0;
-        this.sprite.verticalFrameIndex = 2;
-        break;
-      case 4: // Movimiento hacia la izquierda
-        this.sprite.horizontalFrameIndex = 0;
-        this.sprite.verticalFrameIndex = 1;
-        break;
     }
-
-
-
-
-}
+  }
 }
