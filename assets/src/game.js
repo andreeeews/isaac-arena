@@ -164,23 +164,23 @@ class Game {
     if (this.scoreLevelUp <= 6) {
       this.ctx.font = "24px Impact";
       this.ctx.fillStyle = "red";
-      this.ctx.fillText("LEVEL 1", 372, 30);
+      this.ctx.fillText(`LEVEL 1 (${this.scoreLevelUp}/6)`, 10, 30);
     } else if (this.scoreLevelUp <= 12) {
       this.ctx.font = "24px Impact";
       this.ctx.fillStyle = "red";
-      this.ctx.fillText("LEVEL 2", 372, 30);
+      this.ctx.fillText(`LEVEL 2 (${this.scoreLevelUp}/12)`, 10, 30);
     } else if (this.scoreLevelUp <= 18) {
       this.ctx.font = "24px Impact";
       this.ctx.fillStyle = "red";
-      this.ctx.fillText("LEVEL 3", 372, 30);
+      this.ctx.fillText(`LEVEL 3 (${this.scoreLevelUp}/18)`, 10, 30);
     } else if (this.scoreLevelUp <= 24) {
       this.ctx.font = "24px Impact";
       this.ctx.fillStyle = "red";
-      this.ctx.fillText("LEVEL 4", 372, 30);
+      this.ctx.fillText(`LEVEL 4 (${this.scoreLevelUp}/24)`, 10, 30);
     } else if (this.scoreLevelUp <= 32) {
       this.ctx.font = "24px Impact";
       this.ctx.fillStyle = "red";
-      this.ctx.fillText("LAST LEVEL! BOSS TIME!", 300, 30);
+      this.ctx.fillText(`LAST LEVEL! FIGTH TILL THE END!`, 10, 30);
     } else if (this.scoreLevelUp === 33) {
       this.finisGame();
     }

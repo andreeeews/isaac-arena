@@ -1,8 +1,8 @@
 class Enemy {
     constructor(ctx) {
       this.ctx = ctx;
-      this.x = Math.random() > 0.5 ? 820 : -20;
-      this.y = Math.random() > 0.5 ? 620 : -20;
+      this.x = Math.random() > 0.5 ? 800 : 0;
+      this.y = Math.random() > 0.5 ? 600 : 0;
       this.w = 50/1.3;
       this.h = 50/1.3;
       this.vx = 0; // Componente x de la velocidad actual
